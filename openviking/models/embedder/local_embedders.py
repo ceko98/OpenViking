@@ -22,6 +22,10 @@ logger = get_logger(__name__)
 DEFAULT_LOCAL_MODEL_CACHE_DIR = "~/.cache/openviking/models"
 DEFAULT_LOCAL_DENSE_MODEL = "bge-small-zh-v1.5-f16"
 DEFAULT_BGE_ZH_QUERY_INSTRUCTION = "为这个句子生成表示以用于检索相关文章："
+BGE_EN_QUERY_INSTRUCTION = "Represent this sentence for searching relevant passages: "
+QWEN3_EMBEDDING_QUERY_INSTRUCTION = (
+    "Instruct: Given a web search query, retrieve relevant passages that answer the query\nQuery:"
+)
 
 
 @dataclass(frozen=True)
@@ -43,7 +47,27 @@ LOCAL_DENSE_MODEL_SPECS: Dict[str, LocalModelSpec] = {
             "bge-small-zh-v1.5-f16.gguf?download=true"
         ),
         query_instruction=DEFAULT_BGE_ZH_QUERY_INSTRUCTION,
-    )
+    ),
+    "bge-small-en-v1.5-f16": LocalModelSpec(
+        model_name="bge-small-en-v1.5-f16",
+        dimension=384,
+        filename="bge-small-en-v1.5-f16.gguf",
+        download_url=(
+            "https://huggingface.co/CompendiumLabs/bge-small-en-v1.5-gguf/resolve/main/"
+            "bge-small-en-v1.5-f16.gguf?download=true"
+        ),
+        query_instruction=BGE_EN_QUERY_INSTRUCTION,
+    ),
+    "qwen3-embedding-0.6b-q8_0": LocalModelSpec(
+        model_name="qwen3-embedding-0.6b-q8_0",
+        dimension=1024,
+        filename="Qwen3-Embedding-0.6B-Q8_0.gguf",
+        download_url=(
+            "https://huggingface.co/Qwen/Qwen3-Embedding-0.6B-GGUF/resolve/main/"
+            "Qwen3-Embedding-0.6B-Q8_0.gguf?download=true"
+        ),
+        query_instruction=QWEN3_EMBEDDING_QUERY_INSTRUCTION,
+    ),
 }
 
 

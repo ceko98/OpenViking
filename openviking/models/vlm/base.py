@@ -380,6 +380,11 @@ class VLMFactory:
 
             return CodexVLM(config)
 
+        elif provider == "claude-code":
+            from .backends.claude_code_vlm import ClaudeCodeVLM
+
+            return ClaudeCodeVLM(config)
+
         elif provider == "kimi":
             from .backends.kimi_vlm import KimiVLM
 
