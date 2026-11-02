@@ -14,6 +14,7 @@ VALID_PROVIDERS: tuple[str, ...] = (
     "glm",
     "litellm",
     "openai-codex",
+    "claude-code",
 )
 
 DEFAULT_AZURE_API_VERSION: str = "2025-01-01-preview"
